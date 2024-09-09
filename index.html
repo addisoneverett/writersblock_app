@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimalist Writing App</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</head>
+<body class="bg-background text-foreground font-body">
+    <div class="container mx-auto max-w-md h-screen flex flex-col bg-card shadow-lg relative overflow-hidden">
+        <header class="flex justify-between items-center px-4 py-3 border-b border-border">
+            <div class="text-sm font-medium">
+                <span class="text-primary current-count">0</span> / 500
+            </div>
+            <div class="flex items-center gap-2">
+                <div class="progress-bar h-3 w-24 bg-secondary rounded-md overflow-hidden">
+                    <div class="progress h-full bg-primary transition-all duration-300 ease-in-out"></div>
+                </div>
+                <span class="text-xs text-muted-foreground progress-percentage">0%</span>
+            </div>
+        </header>
+        <main class="flex-grow relative flex flex-col">
+            <div id="title-container" class="hidden px-4 py-2 border-b border-border">
+                <input type="text" id="title-input" class="w-full text-lg font-bold bg-transparent border-none focus:outline-none" placeholder="Enter title...">
+                <button id="remove-title" class="absolute right-4 top-2 text-muted-foreground hover:text-primary">
+                    <ion-icon name="close-outline"></ion-icon>
+                </button>
+            </div>
+            <textarea id="writing-area" class="flex-grow w-full resize-none border-none focus:ring-0 bg-card text-foreground p-4 text-lg font-body" placeholder="Start writing..."></textarea>
+            <div class="px-4 py-2 border-t border-border">
+                <button id="save-button" class="w-full bg-primary text-primary-foreground rounded-md py-2 hover:bg-primary-dark transition-colors">
+                    Save
+                </button>
+            </div>
+        </main>
+        <footer class="flex justify-between items-center px-4 py-3 border-t border-border relative z-20">
+            <button class="text-2xl text-foreground focus:outline-none hover:text-primary transition-colors"><ion-icon name="book-outline"></ion-icon></button>
+            <button class="text-2xl text-foreground focus:outline-none hover:text-primary transition-colors"><ion-icon name="stats-chart-outline"></ion-icon></button>
+            <button class="dropdown-btn text-2xl text-foreground focus:outline-none hover:text-primary transition-colors">
+                <ion-icon name="arrow-up-outline"></ion-icon>
+            </button>
+            <button class="text-2xl text-foreground focus:outline-none hover:text-primary transition-colors"><ion-icon name="settings-outline"></ion-icon></button>
+            <button class="text-2xl text-foreground focus:outline-none hover:text-primary transition-colors"><ion-icon name="map-outline"></ion-icon></button>
+        </footer>
+        <div class="popup-container absolute bottom-0 left-0 right-0 z-10">
+            <div class="dropdown-content bg-popover text-popover-foreground shadow-lg rounded-t-md overflow-hidden">
+                <div class="p-4 space-y-2">
+                    <a href="#" id="add-title-btn" class="flex items-center justify-center px-4 py-2 hover:bg-accent hover:text-accent-foreground rounded-md">
+                        <ion-icon name="create-outline" class="mr-2"></ion-icon> Add Title
+                    </a>
+                    <a href="#" class="flex items-center justify-center px-4 py-2 hover:bg-accent hover:text-accent-foreground rounded-md">
+                        <ion-icon name="bulb-outline" class="mr-2"></ion-icon> Generate Writing Prompt
+                    </a>
+                    <a href="#" class="flex items-center justify-center px-4 py-2 hover:bg-accent hover:text-accent-foreground rounded-md">
+                        <ion-icon name="document-outline" class="mr-2"></ion-icon> Scan Document
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
