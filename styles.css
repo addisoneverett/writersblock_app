@@ -10,18 +10,25 @@
     transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     max-height: 50vh; /* Adjust this value as needed */
     overflow-y: auto;
-    bottom: 0; /* Changed back to 0 */
-    position: absolute; /* Ensure this is set */
+    bottom: 0;
+    position: absolute;
     left: 0;
     right: 0;
+    z-index: 3 !important;
 }
 
 .popup-container.show {
-    transform: translateY(0);
+    transform: translateY(-75%);
 }
 
 .dropdown-content {
     display: block;
+    background-color: hsl(var(--card));
+    border-radius: var(--radius);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05), 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    margin: 0 2rem;
+    overflow: hidden;
 }
 
 .dropdown-btn {
@@ -70,10 +77,6 @@ body {
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
     font-family: var(--font-body, sans-serif);
-    /* Removed the following two lines:
-    background-image: radial-gradient(circle, hsl(var(--foreground)) 1px, transparent 1px);
-    background-size: 20px 20px;
-    */
 }
 
 .app-container {
@@ -85,6 +88,8 @@ body {
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    position: relative;
+    z-index: 1 !important;
 }
 
 /* Dotted background for index screen */
@@ -110,3 +115,17 @@ body {
 .text-muted-foreground { color: hsl(var(--muted-foreground)); }
 
 /* Add any additional custom styles here */
+
+footer {
+    position: relative;
+    z-index: 4 !important;
+}
+
+#save-button {
+    position: relative;
+}
+
+main {
+    position: relative;
+    z-index: 2 !important;
+}
