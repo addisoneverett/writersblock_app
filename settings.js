@@ -1,5 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
     const darkModeToggle = document.getElementById('darkModeToggle');
+    
+    // Load saved dark mode preference
+    const isDarkMode = localStorage.getItem('darkMode') === 'true';
+    darkModeToggle.checked = isDarkMode;
+    document.body.classList.toggle('dark-mode', isDarkMode);
+
+    darkModeToggle.addEventListener('change', () => {
+        document.body.classList.toggle('dark-mode', darkModeToggle.checked);
+        localStorage.setItem('darkMode', darkModeToggle.checked);
+    });
+
     const wordCountGoal = document.getElementById('wordCountGoal');
     const resetTime = document.getElementById('resetTime');
     const wordCountValue = document.querySelector('.text-muted-foreground');

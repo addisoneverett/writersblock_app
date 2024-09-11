@@ -223,3 +223,98 @@ main {
 }
 
 /* ... rest of the existing styles ... */
+
+/* Add these new styles at the end of your existing styles.css file */
+
+/* Dark mode styles */
+body.dark-mode {
+    --background: 0 0% 90%; /* Light gray background, same as light mode */
+    --foreground: 0 0% 90%; /* Light gray text */
+    --card: 0 0% 10%; /* Very dark charcoal for app screen */
+    --card-foreground: 0 0% 90%;
+    --popover: 0 0% 15%;
+    --popover-foreground: 0 0% 90%;
+    --primary: 0 0% 85%;
+    --primary-foreground: 0 0% 5%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 90%;
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 60%;
+    --accent: 0 0% 20%;
+    --accent-foreground: 0 0% 90%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 90%;
+    --border: 0 0% 20%;
+    --input: 0 0% 15%;
+    --ring: 0 0% 30%;
+}
+
+body.dark-mode {
+    background-color: hsl(var(--background));
+}
+
+body.dark-mode .app-container {
+    background-color: hsl(var(--card));
+    color: hsl(var(--card-foreground));
+}
+
+body.dark-mode .settings-card {
+    background-color: hsl(var(--secondary));
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .bg-card {
+    background-color: hsl(var(--secondary));
+}
+
+/* Dropdown menu styles */
+body.dark-mode select {
+    background-color: hsl(var(--input));
+    color: hsl(var(--foreground));
+    border-color: hsl(var(--border));
+}
+
+body.dark-mode select:focus {
+    outline: none;
+    border-color: hsl(var(--ring));
+    box-shadow: 0 0 0 2px hsla(var(--ring), 0.3);
+}
+
+body.dark-mode option {
+    background-color: hsl(var(--input));
+    color: hsl(var(--foreground));
+}
+
+/* Adjust other elements for better visibility in dark mode */
+body.dark-mode .text-muted-foreground {
+    color: hsl(var(--muted-foreground));
+}
+
+body.dark-mode input[type="range"] {
+    background-color: hsl(var(--secondary));
+}
+
+body.dark-mode input[type="range"]::-webkit-slider-thumb {
+    background-color: hsl(var(--primary));
+}
+
+body.dark-mode input[type="range"]::-moz-range-thumb {
+    background-color: hsl(var(--primary));
+}
+
+/* Dark mode toggle button */
+body.dark-mode .peer-checked\:bg-primary:checked {
+    background-color: hsl(var(--primary));
+}
+
+body.dark-mode .peer-checked\:after\:border-white:checked::after {
+    border-color: hsl(var(--card));
+}
+
+body.dark-mode .after\:bg-white::after {
+    background-color: hsl(var(--foreground));
+}
+
+body.dark-mode .after\:border-gray-300::after {
+    border-color: hsl(var(--border));
+}
