@@ -10,6 +10,10 @@
     transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     max-height: 50vh; /* Adjust this value as needed */
     overflow-y: auto;
+    bottom: 0; /* Changed back to 0 */
+    position: absolute; /* Ensure this is set */
+    left: 0;
+    right: 0;
 }
 
 .popup-container.show {
@@ -31,26 +35,26 @@
 @import 'https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css';
 
 :root {
-    --background: 0 0% 90%; /* Light gray background */
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 45%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 72% 51%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 5.9% 10%;
-    --radius: 0.5rem;
+    --background: 0 0% 90%; /* Overall page background - Light gray */
+    --foreground: 240 10% 3.9%; /* Main text color - Almost black */
+    --card: 0 0% 100%; /* Background color for card-like elements - White */
+    --card-foreground: 240 10% 3.9%; /* Text color on cards - Almost black */
+    --popover: 0 0% 100%; /* Background color for popups - White */
+    --popover-foreground: 240 10% 3.9%; /* Text color in popups - Almost black */
+    --primary: 240 5.9% 10%; /* Main brand color - Very dark gray */
+    --primary-foreground: 0 0% 98%; /* Text color on primary color - Off-white */
+    --secondary: 240 4.8% 95.9%; /* Secondary color - Very light gray */
+    --secondary-foreground: 240 5.9% 10%; /* Text on secondary color - Very dark gray */
+    --muted: 240 4.8% 95.9%; /* Color for less prominent elements - Very light gray */
+    --muted-foreground: 240 3.8% 45%; /* Text color for muted elements - Medium gray */
+    --accent: 240 4.8% 95.9%; /* Highlight color - Very light gray */
+    --accent-foreground: 240 5.9% 10%; /* Text on accent color - Very dark gray */
+    --destructive: 0 72% 51%; /* Color for warning or delete actions - Bright red */
+    --destructive-foreground: 0 0% 98%; /* Text on destructive color - Off-white */
+    --border: 240 5.9% 90%; /* Color for borders - Light gray */
+    --input: 240 5.9% 90%; /* Background color for input fields - Light gray */
+    --ring: 240 5.9% 10%; /* Color for focus rings - Very dark gray */
+    --radius: 0.5rem; /* Not a color, but defines rounded corners */
 }
 
 html, body {
@@ -66,6 +70,10 @@ body {
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
     font-family: var(--font-body, sans-serif);
+    /* Removed the following two lines:
+    background-image: radial-gradient(circle, hsl(var(--foreground)) 1px, transparent 1px);
+    background-size: 20px 20px;
+    */
 }
 
 .app-container {
@@ -89,7 +97,15 @@ body {
 .bg-card { background-color: hsl(var(--card)); }
 .text-primary { color: hsl(var(--primary)); }
 .bg-primary { background-color: hsl(var(--primary)); }
-.text-primary-foreground { color: hsl(var(--primary-foreground)); }
+.text-primary-foreground { 
+    color: hsl(var(--primary-foreground)); 
+    background-image: 
+        radial-gradient(hsl(var(--primary) / 0.2) 2px, transparent 2px),
+        radial-gradient(hsl(var(--primary) / 0.2) 2px, transparent 2px);
+    background-size: 30px 30px;
+    background-position: 0 0, 15px 15px;
+    background-attachment: local;
+}
 .bg-secondary { background-color: hsl(var(--secondary)); }
 .text-muted-foreground { color: hsl(var(--muted-foreground)); }
 

@@ -58,7 +58,8 @@ document.addEventListener('DOMContentLoaded', () => {
             "Describe your perfect day.",
             "If you could have dinner with anyone, living or dead, who would it be and why?",
             "Write a story that begins with 'The door creaked open...'",
-            "Describe a place you've never been but would love to visit."
+            "Describe a place you've never been but would love to visit.",
+            "Write your favorite things about Chris"
         ];
         const randomPrompt = prompts[Math.floor(Math.random() * prompts.length)];
         
