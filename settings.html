@@ -32,7 +32,7 @@
                         <option value="23:00">11:00 PM</option>
                     </select>
                 </div>
-                <div class="flex justify-between items-center">
+                <div class="flex justify-between items-center mb-2">
                     <span>Time Zone</span>
                     <select id="timeZone" class="w-1/2 rounded-md border border-input bg-background px-2 py-1 text-sm font-medium">
                         <option value="UTC">UTC</option>
@@ -42,6 +42,10 @@
                         <option value="America/Los_Angeles">Pacific Time</option>
                     </select>
                 </div>
+                <div class="flex justify-between items-center mt-4">
+                    <span>Reset Daily Goal</span>
+                    <button class="px-3 py-1 bg-primary text-primary-foreground rounded text-sm">Reset</button>
+                </div>
             </div>
             
             <div class="settings-card">
@@ -50,14 +54,17 @@
                     <ion-icon name="ban-outline" class="text-xl text-muted-foreground"></ion-icon>
                 </div>
             </div>
-            
+
+            <!-- New card for Reset Daily Goal -->
             <div class="settings-card">
-                <span>Writing Prompt Theme</span>
-                <select id="promptTheme" class="w-full mt-2 rounded-md border border-input bg-background px-3 py-2 text-sm font-medium">
-                    <option value="all">All Themes</option>
-                    <option value="creative">Creative Writing Prompts</option>
-                    <option value="journaling">Journaling Prompts</option>
-                </select>
+                <div class="flex items-center justify-between">
+                    <span>Writing Prompt Theme</span>
+                    <select id="promptTheme" class="w-full mt-2 rounded-md border border-input bg-background px-3 py-2 text-sm font-medium">
+                        <option value="all">All Themes</option>
+                        <option value="creative">Creative Writing Prompts</option>
+                        <option value="journaling">Journaling Prompts</option>
+                    </select>
+                </div>
             </div>
             
             <div class="settings-card">
@@ -95,9 +102,9 @@
         <footer class="flex justify-between items-center px-4 py-3 border-t border-border relative z-20">
             <button class="text-2xl text-foreground focus:outline-none hover:text-primary transition-colors"><ion-icon name="book-outline"></ion-icon></button>
             <button class="text-2xl text-foreground focus:outline-none hover:text-primary transition-colors"><ion-icon name="stats-chart-outline"></ion-icon></button>
-            <button class="text-2xl text-foreground focus:outline-none hover:text-primary transition-colors"><ion-icon name="add-outline"></ion-icon></button>
+            <button class="text-2xl text-foreground focus:outline-none hover:text-primary transition-colors"><ion-icon name="create-outline"></ion-icon></button>
             <button class="text-2xl text-foreground focus:outline-none hover:text-primary transition-colors"><ion-icon name="settings-outline"></ion-icon></button>
-            <button class="text-2xl text-foreground focus:outline-none hover:text-primary transition-colors"><ion-icon name="map-outline"></ion-icon></button>
+            <button class="text-2xl text-foreground focus:outline-none hover:text-primary transition-colors"><ion-icon name="bulb-outline"></ion-icon></button>
         </footer>
     </div>
     <script src="settings.js"></script>

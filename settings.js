@@ -35,6 +35,36 @@ document.addEventListener('DOMContentLoaded', () => {
             resetTime: resetTime.value
         };
         localStorage.setItem('writerSettings', JSON.stringify(settings));
+        showSavedPopup();
+    }
+
+    // Show "Saved!" popup
+    function showSavedPopup() {
+        const saveButton = document.querySelector('button.bg-primary');
+        const savedMessage = document.createElement('div');
+        savedMessage.textContent = 'Saved!';
+        savedMessage.className = 'fixed text-sm font-light text-gray-400 z-50 opacity-0 transition-opacity duration-300';
+        
+        // Position the popup above the save button
+        const saveButtonRect = saveButton.getBoundingClientRect();
+        savedMessage.style.left = `${saveButtonRect.left + saveButtonRect.width / 2}px`;
+        savedMessage.style.bottom = `${window.innerHeight - saveButtonRect.top + 5}px`;
+        savedMessage.style.transform = 'translateX(-50%)';
+
+        document.body.appendChild(savedMessage);
+        
+        // Fade in
+        requestAnimationFrame(() => {
+            savedMessage.style.opacity = '1';
+        });
+        
+        // Fade out and remove
+        setTimeout(() => {
+            savedMessage.style.opacity = '0';
+            setTimeout(() => {
+                document.body.removeChild(savedMessage);
+            }, 300);
+        }, 1500);
     }
 
     // Apply settings
@@ -83,4 +113,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Load settings on page load
     loadSettings();
+
+    // Add this function at the end of the file
+    function setupNavigation() {
+        const footerButtons = document.querySelectorAll('footer button');
+        footerButtons.forEach((button, index) => {
+            button.addEventListener('click', () => {
+                switch(index) {
+                    case 0: // Book icon
+                        window.location.href = 'writing-log.html';
+                        break;
+                    case 1: // Analytics icon
+                        window.location.href = 'analytics.html';
+                        break;
+                    case 2: // Pencil icon
+                        window.location.href = 'index.html';
+                        break;
+                    case 3: // Settings icon (current page)
+                        // Do nothing or reload
+                        break;
+                    case 4: // Lightbulb icon
+                        window.location.href = 'writing-companion.html';
+                        break;
+                }
+            });
+        });
+    }
+
+    // Call this function at the end of the DOMContentLoaded event listener
+    setupNavigation();
 });

@@ -549,12 +549,22 @@ document.addEventListener('DOMContentLoaded', () => {
                        entryDate.getFullYear() === currentYear;
             });
 
-            const cellClass = hasEntry ? 'bg-green-500' : 
-                              (date > currentDate ? 'bg-gray-300' : 'bg-red-500');
+            let cellContent;
+            let cellClass = "flex items-center justify-center h-8 w-8 ";
+            if (hasEntry) {
+                cellContent = '🔥'; // Fire emoji for days with entries
+                cellClass += "text-2xl"; // Larger font size for emojis
+            } else if (date > currentDate) {
+                cellContent = day; // Just the day number for future dates
+                cellClass += "text-sm"; // Keep original size for numbers
+            } else {
+                cellContent = '❌'; // Red X emoji for missed days
+                cellClass += "text-2xl"; // Larger font size for emojis
+            }
 
             calendarHTML += `
-                <div class="flex items-center justify-center h-8 w-8 text-white text-xs rounded-full ${cellClass}">
-                    ${day}
+                <div class="${cellClass}">
+                    ${cellContent}
                 </div>
             `;
         }
@@ -590,7 +600,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     window.location.href = 'settings.html';
                     break;
                 case 4: // Lightbulb icon
-                    // Functionality for lightbulb icon, if any
+                    window.location.href = 'writing-companion.html';
                     break;
             }
         });
