@@ -599,9 +599,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 case 3: // Settings icon
                     window.location.href = 'settings.html';
                     break;
-                case 4: // Lightbulb icon
-                    window.location.href = 'writing-companion.html';
-                    break;
             }
         });
     });

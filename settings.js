@@ -132,9 +132,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     case 3: // Settings icon (current page)
                         // Do nothing or reload
                         break;
-                    case 4: // Lightbulb icon
-                        window.location.href = 'writing-companion.html';
-                        break;
                 }
             });
         });

@@ -211,14 +211,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     case 1: // Analytics icon
                         window.location.href = 'analytics.html';
                         break;
-                    case 2: // Pencil icon
-                        window.location.href = 'index.html';
+                    case 2: // Pencil icon (dropdown)
+                        // Your existing dropdown functionality
                         break;
                     case 3: // Settings icon
                         window.location.href = 'settings.html';
-                        break;
-                    case 4: // Lightbulb icon
-                        window.location.href = 'writing-companion.html';
                         break;
                 }
             });
