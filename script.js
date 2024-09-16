@@ -169,63 +169,28 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add event listener for the new save button
     saveButton.addEventListener('click', saveEntry);
 
-    // Update the existing footer button functionality
+    // Navigation functionality
     const footerButtons = document.querySelectorAll('footer button');
     footerButtons.forEach((button, index) => {
         button.addEventListener('click', () => {
             switch(index) {
-                case 0: // Book icon (go to writing log)
+                case 0: // Create icon (current page)
+                    // Do nothing or reload
+                    break;
+                case 1: // Book icon (go to writing log)
                     window.location.href = 'writing-log.html';
                     break;
-                case 1: // Analytics icon
+                case 2: // Analytics icon
                     window.location.href = 'analytics.html';
-                    break;
-                case 2: // Add icon (dropdown)
-                    // Your existing dropdown functionality
                     break;
                 case 3: // Settings icon
                     window.location.href = 'settings.html';
-                    break;
-                case 4: // Map icon
-                    // Functionality for map icon, if any
                     break;
             }
         });
     });
 
-    // Add this near the end of the file
-    const settingsButton = document.querySelector('footer button:nth-child(4)');
-    settingsButton.addEventListener('click', () => {
-        window.location.href = 'settings.html';
-    });
-
-    // Add this function at the end of the file
-    function setupNavigation() {
-        const footerButtons = document.querySelectorAll('footer button');
-        footerButtons.forEach((button, index) => {
-            button.addEventListener('click', () => {
-                switch(index) {
-                    case 0: // Book icon
-                        window.location.href = 'writing-log.html';
-                        break;
-                    case 1: // Analytics icon
-                        window.location.href = 'analytics.html';
-                        break;
-                    case 2: // Pencil icon (dropdown)
-                        // Your existing dropdown functionality
-                        break;
-                    case 3: // Settings icon
-                        window.location.href = 'settings.html';
-                        break;
-                }
-            });
-        });
-    }
-
-    // Call this function at the end of the DOMContentLoaded event listener
-    setupNavigation();
-
-    // Add an event listener to check for changes in settings
+    // Keep the event listener for settings changes
     window.addEventListener('storage', (event) => {
         if (event.key === 'writerSettings') {
             wordCountGoal = loadWordCountGoal();

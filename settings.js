@@ -92,20 +92,18 @@ document.addEventListener('DOMContentLoaded', () => {
     footerButtons.forEach((button, index) => {
         button.addEventListener('click', () => {
             switch(index) {
-                case 0: // Book icon (go to writing log)
-                    window.location.href = 'writing-log.html';
-                    break;
-                case 1: // Analytics icon
-                    window.location.href = 'analytics.html';
-                    break;
-                case 2: // Pencil icon (return to index)
+                case 0: // Create icon (always go to index)
                     window.location.href = 'index.html';
                     break;
-                case 3: // Settings icon (stay on settings)
-                    // Do nothing or reload the page
+                case 1: // Book icon (go to writing log)
+                    window.location.href = 'writing-log.html';
                     break;
-                case 4: // Map icon
-                    // Functionality for map icon, if any
+                case 2: // Analytics icon
+                    window.location.href = 'analytics.html';
+                    break;
+                case 3: // Settings icon (current page)
+                    // Do nothing or reload
+                    location.reload();
                     break;
             }
         });
@@ -113,30 +111,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Load settings on page load
     loadSettings();
-
-    // Add this function at the end of the file
-    function setupNavigation() {
-        const footerButtons = document.querySelectorAll('footer button');
-        footerButtons.forEach((button, index) => {
-            button.addEventListener('click', () => {
-                switch(index) {
-                    case 0: // Book icon
-                        window.location.href = 'writing-log.html';
-                        break;
-                    case 1: // Analytics icon
-                        window.location.href = 'analytics.html';
-                        break;
-                    case 2: // Pencil icon
-                        window.location.href = 'index.html';
-                        break;
-                    case 3: // Settings icon (current page)
-                        // Do nothing or reload
-                        break;
-                }
-            });
-        });
-    }
-
-    // Call this function at the end of the DOMContentLoaded event listener
-    setupNavigation();
 });

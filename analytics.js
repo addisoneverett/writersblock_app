@@ -587,14 +587,15 @@ document.addEventListener('DOMContentLoaded', () => {
     footerButtons.forEach((button, index) => {
         button.addEventListener('click', () => {
             switch(index) {
-                case 0: // Book icon (go to writing log)
+                case 0: // Create icon (always go to index)
+                    window.location.href = 'index.html';
+                    break;
+                case 1: // Book icon (go to writing log)
                     window.location.href = 'writing-log.html';
                     break;
-                case 1: // Analytics icon (stay on analytics)
-                    // Do nothing or reload the page
-                    break;
-                case 2: // Pencil icon (return to index)
-                    window.location.href = 'index.html';
+                case 2: // Analytics icon (current page)
+                    // Reload the current page
+                    location.reload();
                     break;
                 case 3: // Settings icon
                     window.location.href = 'settings.html';

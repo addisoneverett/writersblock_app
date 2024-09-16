@@ -2,12 +2,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const logEntries = document.getElementById('log-entries');
     const searchInput = document.querySelector('input[type="search"]');
     const sortSelect = document.querySelector('select');
-    const addEntryButton = document.getElementById('add-entry-button');
 
     let entries = [];
 
     function loadEntries() {
         entries = JSON.parse(localStorage.getItem('writingEntries')) || [];
+        console.log('Loaded entries:', entries); // Debug log
         if (entries.length === 0) {
             logEntries.innerHTML = '<p class="text-center text-muted-foreground">No entries in the writing log yet.</p>';
             return;
@@ -19,23 +19,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function renderEntries(entriesToRender) {
+        console.log('Rendering entries:', entriesToRender); // Debug log
         logEntries.innerHTML = entriesToRender.map(entry => `
-            <div class="entry mb-2 p-3 bg-card rounded-lg shadow">
+            <div class="entry mb-4 p-4 bg-card rounded-lg shadow">
                 <div class="flex justify-between items-start">
                     <div class="flex-grow mr-2">
-                        <h3 class="text-md font-semibold truncate">${entry.title || ''}</h3>
-                        <p class="text-xs text-muted-foreground">${new Date(entry.date).toLocaleDateString()}</p>
+                        <h3 class="text-lg font-semibold truncate">${entry.title || 'Untitled'}</h3>
+                        <p class="text-sm text-muted-foreground">${new Date(entry.date).toLocaleString()}</p>
                     </div>
                     <div class="flex items-center">
                         <button class="edit-button mr-2 text-primary hover:text-primary-dark" data-id="${entry.date}">
-                            <ion-icon name="create-outline" class="text-lg"></ion-icon>
+                            <ion-icon name="create-outline" class="text-xl"></ion-icon>
                         </button>
                         <button class="delete-button text-red-500 hover:text-red-700" data-id="${entry.date}">
-                            <ion-icon name="trash-outline" class="text-lg"></ion-icon>
+                            <ion-icon name="trash-outline" class="text-xl"></ion-icon>
                         </button>
                     </div>
                 </div>
-                <p class="text-sm text-muted-foreground mt-1 line-clamp-2">${entry.text.substring(0, 100)}${entry.text.length > 100 ? '...' : ''}</p>
+                <p class="text-sm text-muted-foreground mt-2 line-clamp-3">${entry.text.substring(0, 150)}${entry.text.length > 150 ? '...' : ''}</p>
+                <p class="text-xs text-muted-foreground mt-2">Word count: ${entry.wordCount}</p>
             </div>
         `).join('');
 
@@ -69,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         confirmationCard.querySelector('.confirm-delete').addEventListener('click', () => {
-            deleteEntry(id);  // This calls the deleteEntry function when user confirms
+            deleteEntry(id);
             document.body.removeChild(confirmationCard);
         });
     }
@@ -87,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (sortBy === 'date') {
                 return new Date(b.date) - new Date(a.date); // Most recent first
             } else {
-                return a.title.localeCompare(b.title);
+                return (a.title || '').localeCompare(b.title || '');
             }
         });
 
@@ -95,43 +97,34 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function editEntry(id) {
-        // Implement edit functionality
         console.log('Edit entry:', id);
-        // You might want to redirect to the main writing page with this entry loaded
         window.location.href = `index.html?edit=${id}`;
     }
 
     function deleteEntry(id) {
-        // Filter out the entry with the matching id
         entries = entries.filter(entry => entry.date !== id);
-        
-        // Save the updated entries array back to localStorage
         localStorage.setItem('writingEntries', JSON.stringify(entries));
-        
-        // Reload the entries to update the display
         loadEntries();
     }
 
     // Event listeners
     searchInput.addEventListener('input', filterAndSortEntries);
     sortSelect.addEventListener('change', filterAndSortEntries);
-    addEntryButton.addEventListener('click', () => {
-        window.location.href = 'index.html';
-    });
 
     // Navigation functionality
     const footerButtons = document.querySelectorAll('footer button');
     footerButtons.forEach((button, index) => {
         button.addEventListener('click', () => {
             switch(index) {
-                case 0: // Book icon (current page)
-                    // Do nothing or reload
-                    break;
-                case 1: // Analytics icon
-                    window.location.href = 'analytics.html';
-                    break;
-                case 2: // Pencil icon
+                case 0: // Create icon (always go to index)
                     window.location.href = 'index.html';
+                    break;
+                case 1: // Book icon (current page)
+                    // Do nothing or reload
+                    location.reload();
+                    break;
+                case 2: // Analytics icon
+                    window.location.href = 'analytics.html';
                     break;
                 case 3: // Settings icon
                     window.location.href = 'settings.html';
@@ -141,33 +134,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     loadEntries();
-});
-
-// Add this function at the end of the file
-function setupNavigation() {
-    const footerButtons = document.querySelectorAll('footer button');
-    footerButtons.forEach((button, index) => {
-        button.addEventListener('click', () => {
-            switch(index) {
-                case 0: // Book icon (current page)
-                    // Do nothing or reload
-                    break;
-                case 1: // Analytics icon
-                    window.location.href = 'analytics.html';
-                    break;
-                case 2: // Pencil icon
-                    window.location.href = 'index.html';
-                    break;
-                case 3: // Settings icon
-                    window.location.href = 'settings.html';
-                    break;
-            }
-        });
-    });
-}
-
-// Call this function at the end of the DOMContentLoaded event listener
-document.addEventListener('DOMContentLoaded', () => {
-    // ... existing code ...
-    setupNavigation();
 });
