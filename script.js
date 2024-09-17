@@ -3,14 +3,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentCount = document.querySelector('.current-count');
     const progressBar = document.querySelector('.progress-bar .progress');
     const progressPercentage = document.querySelector('.progress-percentage');
-    const dropdownBtn = document.querySelector('.dropdown-btn');
-    const popupContainer = document.querySelector('.popup-container');
-    const addTitleBtn = document.getElementById('add-title-btn');
     const titleContainer = document.getElementById('title-container');
     const titleInput = document.getElementById('title-input');
     const removeTitleBtn = document.getElementById('remove-title');
     const container = document.querySelector('.container');
     const saveButton = document.getElementById('save-button');
+    const ellipsisButton = document.getElementById('ellipsis-button');
 
     // Load the saved word count goal
     function loadWordCountGoal() {
@@ -38,88 +36,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     writingArea.addEventListener('input', updateWordCount);
 
-    // Dropdown functionality
-    dropdownBtn.addEventListener('click', (event) => {
-        event.stopPropagation();
-        popupContainer.classList.toggle('show');
-    });
-
-    // Close dropdown when clicking outside
-    document.addEventListener('click', (event) => {
-        if (!popupContainer.contains(event.target) && event.target !== dropdownBtn) {
-            popupContainer.classList.remove('show');
-        }
-    });
-
-    // Add Title functionality
-    addTitleBtn.addEventListener('click', () => {
-        titleContainer.classList.remove('hidden');
-        titleInput.focus();
-        popupContainer.classList.remove('show');
-    });
-
     // Remove title functionality
     removeTitleBtn.addEventListener('click', () => {
         titleContainer.classList.add('hidden');
         titleInput.value = '';
-    });
-
-    // Generate Writing Prompt functionality
-    document.querySelector('a[href="#"]:nth-child(2)').addEventListener('click', () => {
-        const prompts = [
-            "Write about a time you faced a fear.",
-            "Describe your perfect day.",
-            "If you could have dinner with anyone, living or dead, who would it be and why?",
-            "Write a story that begins with 'The door creaked open...'",
-            "Describe a place you've never been but would love to visit.",
-            "Write your favorite things about Chris"
-        ];
-        const randomPrompt = prompts[Math.floor(Math.random() * prompts.length)];
-        
-        // Remove existing prompt if any
-        const existingPrompt = document.querySelector('.prompt-container');
-        if (existingPrompt) {
-            existingPrompt.remove();
-        }
-
-        // Create prompt container
-        const promptContainer = document.createElement('div');
-        promptContainer.className = 'prompt-container bg-gray-200 text-gray-800 p-4 rounded-md relative mx-4 mb-4';
-        promptContainer.style.textAlign = 'center';
-        
-        // Create prompt text
-        const promptText = document.createElement('p');
-        promptText.textContent = randomPrompt;
-        promptText.className = 'italic';
-        promptContainer.appendChild(promptText);
-        
-        // Create remove button
-        const removeBtn = document.createElement('button');
-        removeBtn.innerHTML = '&times;';
-        removeBtn.className = 'absolute top-1 right-2 text-lg font-light hover:text-primary focus:outline-none';
-        removeBtn.addEventListener('click', () => promptContainer.remove());
-        promptContainer.appendChild(removeBtn);
-        
-        // Insert prompt container above the save button
-        const mainElement = document.querySelector('main');
-        const saveButtonContainer = document.querySelector('.px-4.py-2.border-t');
-        mainElement.insertBefore(promptContainer, saveButtonContainer);
-        
-        popupContainer.classList.remove('show');
-    });
-
-    // Scan Document functionality (placeholder)
-    document.querySelector('a[href="#"]:nth-child(3)').addEventListener('click', () => {
-        alert("Document scanning functionality would be implemented here.");
-        popupContainer.classList.remove('show');
-    });
-
-    // Placeholder functions for other footer buttons
-    document.querySelectorAll('footer button:not(.dropdown-btn)').forEach(button => {
-        button.addEventListener('click', () => {
-            console.log('Button clicked:', button.querySelector('ion-icon').name);
-            // Implement functionality for each button here
-        });
     });
 
     function saveEntry() {
@@ -166,8 +86,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Add event listener for the new save button
+    // Add event listener for the save button
     saveButton.addEventListener('click', saveEntry);
+
+    // Add event listener for the ellipsis button
+    ellipsisButton.addEventListener('click', () => {
+        // Add your desired functionality here
+        console.log('Ellipsis button clicked');
+        // For example, you could show a dropdown menu or open a modal
+    });
 
     // Navigation functionality
     const footerButtons = document.querySelectorAll('footer button');

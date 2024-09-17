@@ -29,35 +29,21 @@
                 </button>
             </div>
             <textarea id="writing-area" class="flex-grow w-full resize-none border-none focus:ring-0 bg-card text-foreground p-4 text-lg font-body" placeholder="Start writing..."></textarea>
-            <div class="px-4 py-2 border-t border-border">
-                <button id="save-button" class="w-full bg-primary text-primary-foreground rounded-md py-2 hover:bg-primary-dark transition-colors">
+            <div class="px-4 py-2 border-t border-border flex items-center">
+                <button id="save-button" class="flex-grow bg-primary text-primary-foreground rounded-md py-2 hover:bg-primary-dark transition-colors">
                     Save
+                </button>
+                <button id="ellipsis-button" class="ml-2 text-2xl text-foreground focus:outline-none hover:text-primary transition-colors">
+                    <ion-icon name="ellipsis-vertical"></ion-icon>
                 </button>
             </div>
         </main>
         <footer class="flex justify-between items-center px-4 py-3 border-t border-border relative z-20">
-            <button class="dropdown-btn text-2xl text-foreground focus:outline-none hover:text-primary transition-colors">
-                <ion-icon name="create-outline"></ion-icon>
-            </button>
+            <button class="text-2xl text-foreground focus:outline-none hover:text-primary transition-colors"><ion-icon name="create-outline"></ion-icon></button>
             <button class="text-2xl text-foreground focus:outline-none hover:text-primary transition-colors"><ion-icon name="book-outline"></ion-icon></button>
             <button class="text-2xl text-foreground focus:outline-none hover:text-primary transition-colors"><ion-icon name="stats-chart-outline"></ion-icon></button>
             <button class="text-2xl text-foreground focus:outline-none hover:text-primary transition-colors"><ion-icon name="settings-outline"></ion-icon></button>
         </footer>
-        <div class="popup-container absolute bottom-0 left-0 right-0 z-10">
-            <div class="dropdown-content bg-popover text-popover-foreground shadow-lg rounded-t-md overflow-hidden">
-                <div class="p-4 space-y-2">
-                    <a href="#" id="add-title-btn" class="flex items-center justify-center px-4 py-2 hover:bg-accent hover:text-accent-foreground rounded-md">
-                        <ion-icon name="create-outline" class="mr-2"></ion-icon> Add Title
-                    </a>
-                    <a href="#" class="flex items-center justify-center px-4 py-2 hover:bg-accent hover:text-accent-foreground rounded-md">
-                        <ion-icon name="bulb-outline" class="mr-2"></ion-icon> Generate Writing Prompt
-                    </a>
-                    <a href="#" class="flex items-center justify-center px-4 py-2 hover:bg-accent hover:text-accent-foreground rounded-md">
-                        <ion-icon name="document-outline" class="mr-2"></ion-icon> Scan Document
-                    </a>
-                </div>
-            </div>
-        </div>
     </div>
     <script src="script.js"></script>
 </body>
